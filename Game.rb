@@ -12,7 +12,7 @@ class TicTacToe
   end
 
   def whose_turn
-    @turn = (@turn == 1 ? 2 : 1) 
+    @turn = (@turn == 1 ? 2 : 1)
   end
 
   def choose_starter
@@ -42,6 +42,9 @@ class TicTacToe
     false
   end
 
+  # I feel like this function is doing a lot. Perhaps you could put in a function that
+  # checks the board and then returns its findings to this function, which then delegates
+  # to the appropriate 'end game' function. Just to break this up a bit if possible.
   def game_over
     possible_wins.each_with_index do |line, index|
       streak = line.map { |cell| @board[cell][:val] }
@@ -52,6 +55,8 @@ class TicTacToe
     false
   end
 
+  # Instead of printing in this function return the strings or pass them to a print function
+  # whose only responsibility is to display content. MVC-ish
   def finish_game(conclusion)
     print_board
     if conclusion[:conclusion] == 'draw'

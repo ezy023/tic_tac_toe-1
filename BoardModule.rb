@@ -3,9 +3,9 @@ module BoardModule
     board = {}
     ('a'..'c').each_with_index do |letter, index|
       (1..3).each do |number|
-        board["#{letter}#{number}"] = { 
-          :x => index, 
-          :y => (number - 1), 
+        board["#{letter}#{number}"] = {
+          :x => index,
+          :y => (number - 1),
           :val => ' '
         }
       end
@@ -13,6 +13,7 @@ module BoardModule
     board
   end
 
+  # Could this information be better held in a constant?
   def possible_wins
     [
       ['a1','a2','a3'],
@@ -33,7 +34,7 @@ module BoardModule
     ('a'..'c').each do |row|
       string = (1..3).map { |col| @board["#{row}#{col}"][:val] }.join(' ')
       reputs( "#{row} #{string}" )
-    end 
+    end
   end
 
   def reputs(str = '')

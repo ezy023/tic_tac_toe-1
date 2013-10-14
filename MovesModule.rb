@@ -1,4 +1,5 @@
 module MovesModule
+  # I would move any printing to a View module or function instead of printing in the function.
   def user_move
     input_valid = false
     puts "Please enter your move (You are X's)"
@@ -11,14 +12,16 @@ module MovesModule
   end
 
   def validate_user_input(cell)
+    # Could this be an OR statement: return false if ... || ...
     return false if !@board.has_key?(cell)
     return false if @board[cell][:val] != ' '
     true
   end
 
   def bot_move
-    puts "Here I go"
+    puts "Here I go" # move to View function
     sleep(1)
+    # Same as above, OR statement?
     return true if check_for_win_move
     return true if check_for_block_move
     attack_move
@@ -36,7 +39,7 @@ module MovesModule
   end
 
   def make_bots_kill_move(index)
-    possible_wins[index].each do |cell| 
+    possible_wins[index].each do |cell|
       @board[cell][:val] = 'O' if @board[cell][:val] == ' '
     end
   end
@@ -53,7 +56,7 @@ module MovesModule
   end
 
   def make_bots_block_move(index)
-    possible_wins[index].each do |cell| 
+    possible_wins[index].each do |cell|
       @board[cell][:val] = 'O' if @board[cell][:val] == ' '
     end
   end
@@ -68,7 +71,7 @@ module MovesModule
       possible_wins.each_with_index do |line, index|
         row = line.map { |cell| @board[cell][:val] }
         if row.count("X") == num_set[0] && row.count("O") == num_set[1]
-          return make_bots_attack_move(index)
+          return make_bots_attack_move(index) # Do you need to return this function call?
         end
       end
     end
